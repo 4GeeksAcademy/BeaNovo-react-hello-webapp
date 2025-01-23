@@ -4,11 +4,12 @@ import { Modal } from "./Modal";
 
 
 export const Card = ({
-  id,
+  contactId,
   name,
   phone,
   email,
-  address
+  address,
+  id
 }) => {
  
   const [abrirModal, setAbrirModal] = useState (false);
@@ -20,6 +21,10 @@ export const Card = ({
     setAbrirModal (false);
 
   };
+  console.log("estoy dentro del card");
+  
+console.log(contactId);
+
   
   return (
 <div>
@@ -39,11 +44,12 @@ export const Card = ({
         </div> 
       </div>
       <button className="btn btn-position-absolute bottom-0 end-0" onClick={clickAbrirModal}>eliminar</button>
-      <Link to ={"/editcontact/"+id}><button className="btn btn-primary">editar contacto</button></Link>
+      <Link to ={`/editContact/${id}`}><button className="btn btn-primary">editar contacto</button></Link>
+
     </div>
     
   </div>
-  <Modal abrirModal={abrirModal} cerrarModal={cerrarModal} />
+  <Modal abrirModal={abrirModal} cerrarModal={cerrarModal} contactId={contactId}/>
   </div>
 
   

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 
+
 export const Home = () => {
   const {store} = useContext(Context)
  
@@ -22,14 +23,15 @@ export const Home = () => {
       <div>
         {store.contacts.map((contact, index)=>{
           return(<Card 
-            id = {contact.id}
+            contactId = {contact.id}
           name={contact.name}
           phone={contact.phone}
           email={contact.email}
           address={contact.address}
+          id={contact.id}
           key = {index}/>)
         })}
-        <Card />
+        
       </div>
     </div>
   );

@@ -1,52 +1,42 @@
-import React, { useState } from "react";
+import React, { useActionState, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const FormContact = () => {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
+  const {actions} = useContext(Context)
   const navigate = useNavigate();
+  const [newContact, setNewContact] = useState({
+    name:"", 
+    phone:"",
+    email:"",
+    address:""
 
-  const agregarContacto = (e) => {
-    e.preventDefault(); // Evita recargar la página
+  })
+  
+  const handleSubmit= (e)=> {
+  
+    e.preventDefault()
+    actions.agregarContacto(newContact)
+    navigate("/")
+    
+  }
 
-    const datos = {
-      name,
-      phone,
-      email,
-      address,
-    };
+  const handleChange = (e)=> {
+    setNewContact({...newContact, [e.target.name]: e.target.value})
 
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(datos),
-    };
-
-    fetch("https://playground.4geeks.com/contact/agendas/BeaNovo/contacts", requestOptions)
-      .then((response) => {
-        if (!response.ok) throw new Error("Error en la respuesta del servidor");
-        return response.json();
-      })
-      .then((result) => {
-        console.log("Contacto agregado:", result);
-        navigate("/"); // Redirige tras éxito
-      })
-      .catch((error) => console.error("Error al agregar contacto:", error));
-  };
-
+  }
   return (
     <div>
-      <form onSubmit={agregarContacto}>
+      <form onSubmit={handleSubmit}>
         <div className="mb-3 px-2">
           <label htmlFor="name" className="form-label">Name</label>
           <input
             className="form-control"
             type="text"
             id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            name="name"
+            value={newContact.name}
+            onChange={handleChange}
           />
         </div>
         <div className="mb-3 px-2">
@@ -55,8 +45,9 @@ export const FormContact = () => {
             className="form-control"
             type="email"
             id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            value={newContact.email}
+            onChange={handleChange}
           />
         </div>
         <div className="mb-3 px-2">
@@ -65,8 +56,9 @@ export const FormContact = () => {
             className="form-control"
             type="text"
             id="phone"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            name="phone"
+            value={newContact.phone}
+            onChange={handleChange}
           />
         </div>
         <div className="mb-3 px-2">
@@ -75,8 +67,9 @@ export const FormContact = () => {
             className="form-control"
             type="text"
             id="address"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
+            name="address"
+            value={newContact.address}
+            onChange={handleChange}
           />
         </div>
         <button type="submit" className="btn btn-primary">Save</button>
