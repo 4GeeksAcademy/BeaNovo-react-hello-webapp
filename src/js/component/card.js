@@ -1,58 +1,74 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Modal } from "./Modal";
+import { FaTrash, FaEdit } from "react-icons/fa";
 
+export const Card = ({ id, name, phone, email, address }) => {
+  const [abrirModal, setAbrirModal] = useState(false);
 
-export const Card = ({
-  contactId,
-  name,
-  phone,
-  email,
-  address,
-  id
-}) => {
- 
-  const [abrirModal, setAbrirModal] = useState (false);
-  const clickAbrirModal = () => { // función para abrir el modal
-    setAbrirModal (true);
+  const clickAbrirModal = () => {
+    setAbrirModal(true); // Abre el modal
   };
-  
+
   const cerrarModal = () => {
-    setAbrirModal (false);
-
+    setAbrirModal(false); // Cierra el modal
   };
-  console.log("estoy dentro del card");
-  
-console.log(contactId);
 
-  
   return (
-<div>
-    <div className="card ms-4 mx-auto mt-3"  style={{maxWidth: "540px"}}>
-    <div className="row g-0">
-      <div className="col-md-4">
-        <img src="https://static.wikia.nocookie.net/thebigbangtheory/images/d/d0/Sheldon_Spray.jpg/revision/latest?cb=20120722100140&path-prefix=es" className="img-fluid rounded-start" alt="..."/>
-      </div>
-      <div className="col-md-8">
-        <div className="card-body">
-          <h5 className="card-title">Card title</h5>
-          <p className="card-text">Name:<span>{name}</span></p>
-          <p className="card-text">Phone:<span>{phone}</span></p>
-          <p className="card-text">Email:<span>{email}</span></p>
-          <p className="card-text">Address:<span>{address}</span></p>
-          <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-        </div> 
-      </div>
-      <button className="btn btn-position-absolute bottom-0 end-0" onClick={clickAbrirModal}>eliminar</button>
-      <Link to ={`/editContact/${id}`}><button className="btn btn-primary">editar contacto</button></Link>
+    <div>
+      <div className="card ms-4 mx-auto mt-3" style={{ maxWidth: "600px" }}>
+        <div className="row g-0">
+          {/* Imagen del contacto */}
+          <div className="col-md-4">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdqlFW0lZ_3Zjhxzdw8yO-pZFM4qcQJYPIKA&s"
+              className="img-fluid rounded-start"
+              alt=""
+            />
+          </div>
 
+          {/* Detalles del contacto */}
+          <div className="col-md-8">
+            <div className="card-body">
+              {/* Línea para el nombre y botón de editar */}
+              <div className="d-flex justify-content-between align-items-center">
+                <h5 className="card-title mb-2">{name}</h5>
+                <Link to={`/editContact/${id}`} className="text-dark">
+                  <FaEdit size={20} title="Editar contacto" />
+                </Link>
+              </div>
+
+              {/* Línea para el teléfono y botón de eliminar */}
+              <div className="d-flex justify-content-between align-items-center">
+                <p className="card-text mb-2">
+                  <strong>Phone:</strong> {phone}
+                </p>
+                <button
+                  className="btn btn-link p-0 text-dark"
+                  onClick={clickAbrirModal}
+                  title="Eliminar contacto"
+                >
+                  <FaTrash size={20} />
+                </button>
+              </div>
+
+              {/* Otros detalles */}
+              <p className="card-text mb-2">
+                <strong>Email:</strong> {email}
+              </p>
+              <p className="card-text">
+                <strong>Address:</strong> {address}
+              </p>
+              <p className="card-text mt-5">
+                <small className="text-muted">Last updated 3 mins ago</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Modal para confirmación */}
+      <Modal abrirModal={abrirModal} cerrarModal={cerrarModal} contactId={id} />
     </div>
-    
-  </div>
-  <Modal abrirModal={abrirModal} cerrarModal={cerrarModal} contactId={contactId}/>
-  </div>
-
-  
-);
-
+  );
 };
