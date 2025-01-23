@@ -47,9 +47,7 @@ const Layout = () => {
 						{/* Ruta para la página de inicio ("/") */}
 						<Route path="/" element={<Home />} />
 						
-						{/* Las siguientes rutas están comentadas: */}
-						{/* <Route path="/demo" element={<Demo />} /> 
-						<Route path="/single/:theid" element={<Single />} /> */}
+						
 						
 						{/* Ruta para agregar un contacto */}
 						<Route path="/addcontact" element={<AddContact />} />
