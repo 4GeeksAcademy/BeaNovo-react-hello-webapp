@@ -133,9 +133,10 @@ export const EditContact = () => {
           Save
         </button>
       </form>
-
-      <Link to={"/"}>Return to Home</Link> 
+        
+      <Link to={"/"} className="bnt mx-3">Return to Home</Link> 
       {/* Enlace para volver a la página principal */}
+      
     </div>
   );
 };

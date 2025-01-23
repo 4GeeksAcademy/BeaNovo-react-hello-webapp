@@ -108,7 +108,7 @@ export const FormContact = () => {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary mx-3">
           {/* Botón para enviar el formulario */}
           Save
         </button>

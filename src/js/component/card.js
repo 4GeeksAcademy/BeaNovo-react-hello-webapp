@@ -41,7 +41,7 @@ export const Card = ({ id, name, phone, email, address }) => {
               {/* Línea para el teléfono y botón de eliminar */}
               <div className="d-flex justify-content-between align-items-center">
                 <p className="card-text mb-2">
-                  <strong>Phone:</strong> {phone}
+                  <strong><i className="fa-solid fa-phone"></i></strong> {phone}
                 </p>
                 <button
                   className="btn btn-link p-0 text-dark"
@@ -54,14 +54,12 @@ export const Card = ({ id, name, phone, email, address }) => {
 
               {/* Otros detalles */}
               <p className="card-text mb-2">
-                <strong>Email:</strong> {email}
+                <strong><i className="fa-solid fa-envelope"></i></strong> {email}
               </p>
               <p className="card-text">
-                <strong>Address:</strong> {address}
+                <strong><i className="fa-solid fa-location-dot"></i></strong> {address}
               </p>
-              <p className="card-text mt-5">
-                <small className="text-muted">Last updated 3 mins ago</small>
-              </p>
+              
             </div>
           </div>
         </div>
