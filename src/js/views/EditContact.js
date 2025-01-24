@@ -107,7 +107,7 @@ export const EditContact = () => {
           <label htmlFor="phone" className="form-label">Phone</label>
           <input
             className="form-control"
-            type="text"
+            type="number"
             id="phone"
             name="phone"
             value={contacto.phone || ""} 
@@ -128,7 +128,7 @@ export const EditContact = () => {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary mx-3">
           {/* Botón para guardar los cambios */}
           Save
         </button>

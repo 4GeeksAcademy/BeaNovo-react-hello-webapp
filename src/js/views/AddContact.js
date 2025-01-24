@@ -16,12 +16,12 @@ export const AddContact = () => {
 
     return (
         // El JSX que se retorna define la estructura visual del componente.
-        <div>
+        <div className="mx-3">
             {/* Incluimos el componente `FormContact` para mostrar el formulario de contacto. */}
             <FormContact /> 
             
             {/* Usamos el componente `Link` para crear un enlace que redirige al usuario a la página de inicio. */}
-            <Link to={"/"}>return to home</Link> 
+            <Link to={"/"}>Return to home</Link> 
             {/* `to={"/"}` indica que al hacer clic, el usuario será llevado a la ruta "/" (inicio). */}
         </div>
     );
